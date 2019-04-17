@@ -16,8 +16,8 @@ spec:
         app: kubetest
     spec:
       containers:
-        - image: kubetest:v2
+        - image: kubetest:v1
           imagePullPolicy: Never
           name: kubetest
           ports:
-            - containerPort: 80
+            - containerPort: 8080

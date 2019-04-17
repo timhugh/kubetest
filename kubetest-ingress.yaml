@@ -1,0 +1,15 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: kubetest-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+    - host: kube.test
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: kubetest-lb
+              servicePort: 8080

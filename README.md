@@ -8,9 +8,13 @@ Learning how to use Kubernetes using Minikube.
 
 [Running Kubernetes Locally via Minikube](https://kubernetes.io/docs/setup/minikube/) (kubernetes.io)
 
+[Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/) (kubernetes.io)
+
 [Learn Kubernetes in Under 3 Hours: A Detailed Guide to Orchestrating Containers](https://medium.freecodecamp.org/learn-kubernetes-in-under-3-hours-a-detailed-guide-to-orchestrating-containers-114ff420e882) (freecodecamp.org)
 
 [Learning Kubernetes: Getting Started with Minikube](https://sweetcode.io/learning-kubernetes-getting-started-minikube/) (sweetcode.io)
+
+[Setting up Ingress on Minikube](https://medium.com/@Oskarr3/setting-up-ingress-on-minikube-6ae825e98f82) (medium.com)
 
 ## Terminology
 
@@ -18,6 +22,7 @@ Learning how to use Kubernetes using Minikube.
 * Deployment - orchestrates the creation, deletion, and updating of Pods.
   * Technically there's an object in between--ReplicaSets--but this is abstracted, and the Kubernetes docs [recommend using Deployments in most cases](https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/#when-to-use-a-replicaset).
 * Service - defines a set of Pods (using a Label Selector) and how to access them (e.g. exposing ports). Can be configured as a load balancer.
+* Ingress - exposes HTTP(S) routes from outside the cluster to services within the cluster.
 
 ## Getting Started
 
@@ -34,7 +39,14 @@ Start minikube in a new VirtualBox instance:
 minikube start --vm-driver=virtualbox
 ```
 
-## Commands
+Add an entry to `/etc/hosts` for ingress:
+
+```
+# IP of minikube vm (use `minikube ip`)
+192.168.99.101 kube.test
+```
+
+## Helpful Commands
 
 Open a minikube dashboard to visually inspect the cluster:
 
@@ -70,23 +82,25 @@ Deleting a specification:
 
 ```
 kubectl delete pod xxx
-kubectl delete service xxx
+kubectl delete svc xxx
 kubectl delete deployment xxx
+kubectl delete ing xxx
 ```
 
 Inspecting pods, deployments, and services in the cluster:
 
 ```
-kubectl get pods
 kubectl get pod
 kubectl describe pod xxx
 
-kubectl get services
 kubectl get svc
-kubectl describe service xxx
+kubectl describe svc xxx
 
 kubectl get deployments
 kubectl describe deployments.apps xxx
+
+kubectl get ingress
+kubectl describe ing xxx
 ```
 
 Creating a port-forward to a specific Pod (could be handy for testing):
@@ -114,4 +128,10 @@ eval $(minikube docker-env)
 # AFAIK submitting an unchanged spec is a no-op, so I've been incrementing a version tag for every build
 docker build -t xxx:v1 .
 # use the tag in the pod/deployment spec
+```
+
+Tailing logs from multiple pods using [kubetail](https://github.com/johanhaleby/kubetail):
+
+```
+kubetail xxx
 ```
