@@ -48,6 +48,12 @@ Open a service in the browser (not sure what happens if there are multiple ports
 minikube service xxx
 ```
 
+Kill the minikube vm:
+
+```
+minikube stop
+```
+
 Submitting a specification to the cluster:
 
 ```
@@ -58,6 +64,14 @@ Updating an existing specification:
 
 ```
 kubectl apply -f xxx.yaml
+```
+
+Deleting a specification:
+
+```
+kubectl delete pod xxx
+kubectl delete service xxx
+kubectl delete deployment xxx
 ```
 
 Inspecting pods, deployments, and services in the cluster:
