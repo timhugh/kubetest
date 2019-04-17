@@ -19,10 +19,10 @@ Learning how to use Kubernetes using Minikube.
 ## Terminology
 
 * Pod - the smallest unit of the Kubernetes object model. Typically is a single container, but can be multiple containers that need to share resources.
-* Deployment - orchestrates the creation, deletion, and updating of Pods.
+* [Deployment](kubetest.yaml) - orchestrates the creation, deletion, and updating of Pods.
   * Technically there's an object in between--ReplicaSets--but this is abstracted, and the Kubernetes docs [recommend using Deployments in most cases](https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/#when-to-use-a-replicaset).
-* Service - defines a set of Pods (using a Label Selector) and how to access them (e.g. exposing ports). Can be configured as a load balancer.
-* Ingress - exposes HTTP(S) routes from outside the cluster to services within the cluster.
+* [Service](kubetest-lb.yaml) - defines a set of Pods (using a Label Selector) and how to access them (e.g. exposing ports). Can be configured as a load balancer.
+* [Ingress](kubetest-ingress.yaml) - exposes HTTP(S) routes from outside the cluster to services within the cluster.
 
 ## Getting Started
 
