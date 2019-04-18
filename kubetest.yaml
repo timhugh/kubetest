@@ -20,4 +20,4 @@ spec:
           imagePullPolicy: Never
           name: kubetest
           ports:
-            - containerPort: 8080
+            - containerPort: 80

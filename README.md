@@ -1,6 +1,7 @@
 # kubetest
 
 Learning how to use Kubernetes using Minikube.
+ADDENDUM: Also learning Helm.
 
 ## Resources
 
@@ -15,6 +16,14 @@ Learning how to use Kubernetes using Minikube.
 [Learning Kubernetes: Getting Started with Minikube](https://sweetcode.io/learning-kubernetes-getting-started-minikube/) (sweetcode.io)
 
 [Setting up Ingress on Minikube](https://medium.com/@Oskarr3/setting-up-ingress-on-minikube-6ae825e98f82) (medium.com)
+
+[Quickstart Guide](https://helm.sh/docs/using_helm/) (helm.sh)
+
+[Developing Charts](https://helm.sh/docs/developing_charts/) (helm.sh)
+
+[The Chart Template Developer's Guide](https://helm.sh/docs/chart_template_guide/) (helm.sh)
+
+[Chart Development Tips and Tricks](https://helm.sh/docs/charts_tips_and_tricks/) (helm.sh)
 
 ## Terminology
 
@@ -37,6 +46,13 @@ Start minikube in a new VirtualBox instance:
 
 ```
 minikube start --vm-driver=virtualbox
+```
+
+Enable some addons:
+
+```
+minikube addons enable ingress
+minikube addons enable registry-creds
 ```
 
 Add an entry to `/etc/hosts` for ingress:
